@@ -1,0 +1,22 @@
+{
+  "name": "microweber-modules/license-server",
+  "type": "microweber-modules",
+  "description": "license-server",
+  "keywords": [
+    "microweber",
+    "ecommerce",
+    "bootstrap",
+    "default"
+  ],
+  "homepage": "https://microweber.com/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "MW Team",
+      "email": "contacts@microweber.com"
+    }
+  ],
+  "require": {
+
+  }
+}
