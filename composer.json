@@ -17,6 +17,7 @@
     }
   ],
   "require": {
-
+      "jeremykendall/php-domain-parser": "^6.1",
+      "laravel-ready/ultimate-support": "^1.0"
   }
 }
