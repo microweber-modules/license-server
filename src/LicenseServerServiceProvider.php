@@ -41,11 +41,11 @@ final class LicenseServerServiceProvider extends ServiceProvider
     {
         // configs
         $this->publishes([
-            __DIR__ . '/../config/license-server.php' => $this->app->configPath('license-server.php'),
+            __DIR__ . '/config/license-server.php' => $this->app->configPath('license-server.php'),
         ], 'license-server-configs');
 
         // migrations
-        $migrationsPath = __DIR__ . '/../database/migrations/';
+        $migrationsPath = __DIR__ . '/database/migrations/';
 
         $this->publishes([
             $migrationsPath => database_path('migrations/laravel-ready/theme-store')
@@ -59,7 +59,7 @@ final class LicenseServerServiceProvider extends ServiceProvider
      */
     private function registerConfigs(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/license-server.php', 'license-server');
+        $this->mergeConfigFrom(__DIR__ . '/config/license-server.php', 'license-server');
     }
 
     /**
@@ -67,8 +67,8 @@ final class LicenseServerServiceProvider extends ServiceProvider
      */
     private function loadRoutes(): void
     {
-        $this->loadRoutesFrom(__DIR__ . '/../routes/api-public.php');
-        $this->loadRoutesFrom(__DIR__ . '/../routes/api-private.php');
+        $this->loadRoutesFrom(__DIR__ . '/routes/api-public.php');
+        $this->loadRoutesFrom(__DIR__ . '/routes/api-private.php');
     }
 
     /**
