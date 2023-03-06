@@ -29,6 +29,8 @@ final class LicenseServerServiceProvider extends ServiceProvider
     {
         $this->registerConfigs();
 
+        $this->app->register(\MicroweberPackages\Modules\LicenseServer\FilamentPluginServiceProvider::class);
+
         $this->app->singleton('license-server', function () {
             return new LicenseService();
         });
