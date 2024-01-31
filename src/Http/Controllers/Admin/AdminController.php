@@ -2,6 +2,8 @@
 namespace MicroweberPackages\Modules\LicenseServer\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use MicroweberPackages\Modules\LicenseServer\Models\ExtendedProduct;
+use MicroweberPackages\Modules\LicenseServer\Services\LicenseService;
 
 class AdminController extends \MicroweberPackages\Admin\Http\Controllers\AdminController {
 
@@ -10,7 +12,7 @@ class AdminController extends \MicroweberPackages\Admin\Http\Controllers\AdminCo
 
 //        $product = ExtendedProduct::where('id', 30)->first();
 //        $userId = user_id();
-//        $license = LicenseService::addLicense($product, 'artlab.bg', $userId);
+//        $license = LicenseService::addLicense($product, 'microweber.com', $userId);
 
 //        // license key in uuid format
 //        $licenseKey = "7b2df404-8775-44ba-850a-753927039a6f";

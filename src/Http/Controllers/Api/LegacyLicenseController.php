@@ -54,15 +54,15 @@ class LegacyLicenseController extends ApiBaseController
             return response()->json([
                 $relType => [
                     'rel_type' => $relType,
-                    'status' => $findLicense->status,
+                    'status' => ucfirst($findLicense->status),
                     'local_key_hash' => md5($findLicense->license_key),
                     'registered_name' => $registeredName,
                     'rel_name' => $relName,
                     'reg_on' => $findLicense->created_at,
                     'due_on' => $findLicense->expiration_date,
                     'billing_cycle' => 'Monthly',
-                    'product_id' => '',
-                    'service_id' => '',
+                    'productid' => 0,
+                    'serviceid' => 0,
                 ]
             ]);
         }
