@@ -101,36 +101,49 @@
         <div class="card">
             <div class="card-body">
 
-                <h3>
-                    <?php _e('Licenses'); ?>
-                </h3>
+                <div class="d-flex justify-content-between gap-2 my-2">
+                    <h3>
+                        {{_e('Licenses')}}
+                    </h3>
+                    <div>
+                        <button type="button" class="btn btn-sm btn-primary">
+                          {{_e('Generate new License')}}
+                        </button>
+                    </div>
+                </div>
 
                 <div class="table-responsive">
                     <table class="table table-hover table-striped">
                         <thead>
                             <tr>
-                                <th class="font-weight-bold"><?php _e('Owner'); ?></th>
-                                <th class="font-weight-bold"><?php _e('Domain'); ?></th>
-                                <th class="font-weight-bold"><?php _e('License Key'); ?></th>
-                                <th class="font-weight-bold"><?php _e('Expiration Date'); ?></th>
-                                <th class="font-weight-bold"><?php _e('Lifetime'); ?></th>
-                                <th class="font-weight-bold"><?php _e('Status'); ?></th>
+                                <th class="font-weight-bold">{{_e('Owner')}}</th>
+                                <th class="font-weight-bold">{{_e('Domain')}}</th>
+                                <th class="font-weight-bold">{{_e('License Key')}}</th>
+                                <th class="font-weight-bold">{{_e('Expiration Date')}}</th>
+                                <th class="font-weight-bold">{{_e('Lifetime')}}</th>
+                                <th class="font-weight-bold">{{_e('Status')}}</th>
                             </tr>
                         </thead>
 
                         <tbody class="small">
                         @foreach ($licenses as $license)
                             <tr>
-                                <td>{{ user_name($license['user_id']) }}</td>
+                                <td>
+                                    @if($license['user_id'] == 0)
+                                        {{_e('Not Assigned')}}
+                                    @else
+                                    {{ user_name($license['user_id']) }}
+                                    @endif
+                                </td>
                                 <td>{{$license['domain']}}</td>
                                 <td>
                                     <div x-data="{showLicense:false}">
-                                        <a x-show="!showLicense" href="#" x-on:click="showLicense =! showLicense">
+                                        <span x-show="!showLicense" class="cursor-pointer text-primary" x-on:click="showLicense =! showLicense">
                                             {{$license->license_key_masked}}
-                                        </a>
-                                        <a x-show="showLicense" href="#" x-on:click="showLicense =! showLicense">
+                                        </span>
+                                        <span x-show="showLicense" class="cursor-pointer text-primary" x-on:click="showLicense =! showLicense">
                                             {{$license->license_key}}
-                                        </a>
+                                        </span>
                                     </div>
                                 </td>
                                 <td>
@@ -157,7 +170,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center mt-4">
-                    {!! $licenses->links('microweber-ui::livewire.pagination') !!}
+                    {{$licenses->links('livewire::bootstrap')}}
                 </div>
 
             </div>

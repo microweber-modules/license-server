@@ -2,11 +2,14 @@
 namespace MicroweberPackages\Modules\LicenseServer\Http\Livewire\Admin;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use MicroweberPackages\Modules\LicenseServer\Models\License;
 use MicroweberPackages\Modules\Newsletter\Models\NewsletterList;
 
 class LicenseServerDashboard extends Component
 {
+    use WithPagination;
+
     public function render()
     {
         $licensesQuery = License::query();

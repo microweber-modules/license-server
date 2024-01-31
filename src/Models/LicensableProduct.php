@@ -8,15 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LicensableProduct extends Model
 {
-    public function __construct(array $attributes = [])
-    {
-        $prefix = Config::get('theme-store.default_table_prefix', 'ls');
-
-        $this->table = "{$prefix}_licensable_products";
-
-        parent::__construct($attributes);
-    }
-
     public static function boot()
     {
         parent::boot();
@@ -26,7 +17,7 @@ class LicensableProduct extends Model
         });
     }
 
-    protected $table = 'ls__licensable_products';
+    protected $table = 'ls_licensable_products';
 
     protected $fillable = [
         'licensable_id',
