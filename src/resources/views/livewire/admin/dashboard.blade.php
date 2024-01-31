@@ -113,10 +113,44 @@
         <div class="card">
             <div class="card-body">
 
+                <h3>
+                    {{_e('Licenses')}}
+                </h3>
+
                 <div class="d-flex justify-content-between gap-2 my-2">
-                    <h3>
-                        {{_e('Licenses')}}
-                    </h3>
+                    <div class="d-flex align-items-center gap-3">
+                        <div>
+                            <label>{{_e('Keyword')}}</label>
+                            <input  wire:model="keyword" type="text" class="form-control" placeholder="{{_e('Search')}}">
+                        </div>
+                        <div>
+                            <label>{{_e('Status')}}</label>
+                            <select wire:model="status" class="form-select">
+                                <option value="">{{_e('All')}}</option>
+                                <option value="active">{{_e('Active')}}</option>
+                                <option value="expired">{{_e('Expired')}}</option>
+                                <option value="suspended">{{_e('Suspended')}}</option>
+                                <option value="lifetime">{{_e('Lifetime')}}</option>
+                            </select>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <div>
+                                <label>{{_e('Order By')}}</label>
+                                <select wire:model="orderBy" class="form-select">
+                                    <option value="id">{{_e('Default')}}</option>
+                                    <option value="expiration_date">{{_e('Expiration Date')}}</option>
+                                    <option value="created_at">{{_e('Created At')}}</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>{{_e('Direction')}}</label>
+                                <select wire:model="orderDir" class="form-select">
+                                    <option value="asc">{{_e('Ascending')}}</option>
+                                    <option value="desc">{{_e('Descending')}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <button type="button" class="btn btn-sm btn-primary">
                           {{_e('Generate new License')}}
@@ -165,7 +199,7 @@
                                 @if($license['is_lifetime'] == 1)
                                     <span class="badge badge-success">Yes</span>
                                 @else
-                                    <span class="badge badge-danger">No</span>
+                                    <span class="badge badge-dark">No</span>
                                 @endif
                                 </td>
                                 <td>
@@ -183,6 +217,9 @@
                     </table>
                 </div>
 
+                <div class="d-flex justify-content-center mt-4">
+                    {{_e('Results found:')}} {{$licenses->total()}}
+                </div>
                 <div class="d-flex justify-content-center mt-4">
                     {{$licenses->links('livewire::bootstrap')}}
                 </div>
