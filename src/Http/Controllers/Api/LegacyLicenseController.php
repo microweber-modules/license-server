@@ -13,7 +13,6 @@ class LegacyLicenseController extends ApiBaseController
     {
         $localKey = $request->get('local_key', false);
         $relType = $request->get('rel_type', false);
-        $source = $request->get('source', 'none');
 
         if (!$localKey) {
             return $this->respondWithError('Invalid local key');
@@ -42,6 +41,11 @@ class LegacyLicenseController extends ApiBaseController
 
             $registeredName = '';
             $relName = '';
+
+            $licensed = $findLicense->licensed()->first();
+            if ($licensed) {
+                $relName = content_title($licensed->licensable_id);
+            }
 
             if ($findLicense->user_id > 0) {
                 $registeredName = user_name($findLicense->user_id);
