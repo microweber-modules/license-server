@@ -4,6 +4,18 @@
         .card-sm > .card-body {
             padding: 4px;
         }
+        .badge-success {
+            color: #fff;
+            background-color: #28a745;
+        }
+        .badge-warning {
+            color: #212529;
+            background-color: #ffc107;
+        }
+        .badge-danger {
+            color: #fff;
+            background-color: #dc3545;
+        }
     </style>
 
     <div class="col-12 mb-4">
@@ -157,8 +169,10 @@
                                 @endif
                                 </td>
                                 <td>
-                                    @if($license['is_active'] == 1)
+                                    @if($license['status'] == 'active')
                                         <span class="badge badge-success">Active</span>
+                                    @elseif($license['status'] == 'suspended')
+                                        <span class="badge badge-warning">Suspended</span>
                                     @else
                                         <span class="badge badge-danger">Expired</span>
                                     @endif
