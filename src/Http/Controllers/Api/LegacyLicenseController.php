@@ -28,8 +28,6 @@ class LegacyLicenseController extends ApiBaseController
             return $this->respondWithError('Invalid license key');
         }
 
-        $findLicense->tokens()->where('name', $source)->delete();
-
         $ipAddress = IpAddress::where('license_id', $findLicense->id)->first();
         $serverIpAddress = user_ip();
 
@@ -41,8 +39,6 @@ class LegacyLicenseController extends ApiBaseController
         }
 
         if ($ipAddress && $ipAddress->ip_address == $serverIpAddress) {
-
-            $licenseAccessToken = $findLicense->createToken($source, ['license-access']);
 
             $registeredName = '';
             $relName = '';
@@ -63,7 +59,6 @@ class LegacyLicenseController extends ApiBaseController
                     'billing_cycle' => 'Monthly',
                     'product_id' => '',
                     'service_id' => '',
-                    'access_token' => explode('|', $licenseAccessToken->plainTextToken)[1],
                 ]
             ]);
         }
