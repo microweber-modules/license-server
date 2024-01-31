@@ -4,6 +4,7 @@ namespace MicroweberPackages\Modules\LicenseServer\Http\Controllers\Admin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use MicroweberPackages\Modules\LicenseServer\Models\ExtendedProduct;
+use MicroweberPackages\Modules\LicenseServer\Models\IpAddress;
 use MicroweberPackages\Modules\LicenseServer\Models\LicensableProduct;
 use MicroweberPackages\Modules\LicenseServer\Models\License;
 use MicroweberPackages\Modules\LicenseServer\Services\LicenseService;
