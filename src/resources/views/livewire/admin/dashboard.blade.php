@@ -162,7 +162,8 @@
                     <table class="table table-hover table-striped">
                         <thead>
                             <tr>
-                                <th class="font-weight-bold">{{_e('Owner')}}</th>
+<!--                                <th class="font-weight-bold">{{_e('Owner')}}</th>-->
+                                <th class="font-weight-bold">{{_e('License')}}</th>
                                 <th class="font-weight-bold">{{_e('Domain')}}</th>
                                 <th class="font-weight-bold">{{_e('License Key')}}</th>
                                 <th class="font-weight-bold">{{_e('Expiration Date')}}</th>
@@ -174,14 +175,35 @@
                         <tbody class="small">
                         @foreach ($licenses as $license)
                             <tr>
-                                <td>
+<!--                                <td>
                                     @if($license['user_id'] == 0)
                                         {{_e('Not Assigned')}}
                                     @else
                                     {{ user_name($license['user_id']) }}
                                     @endif
+                                </td>-->
+                                <td>
+                                    <div>
+                                        @php
+                                            $productName = '';
+                                            $licensed = $license->licensed()->first();
+                                            if ($licensed) {
+                                                $productName = content_title($licensed->licensable_id);
+                                            }
+                                            echo $productName;
+                                        @endphp
+                                    </div>
                                 </td>
-                                <td>{{$license['domain']}}</td>
+                                <td>
+                                    <div x-data="{showDomain:false}">
+                                        <span x-show="!showDomain" class="cursor-pointer text-primary" x-on:click="showDomain =! showDomain">
+                                            {{str_limit($license['domain'], 15)}}
+                                        </span>
+                                        <span x-show="showDomain" class="cursor-pointer text-primary" x-on:click="showDomain =! showDomain">
+                                            {{$license['domain']}}
+                                        </span>
+                                    </div>
+                                </td>
                                 <td>
                                     <div x-data="{showLicense:false}">
                                         <span x-show="!showLicense" class="cursor-pointer text-primary" x-on:click="showLicense =! showLicense">
