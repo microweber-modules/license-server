@@ -39,6 +39,7 @@ class LegacyLicenseController extends ApiBaseController
 
         if ($ipAddress && $ipAddress->ip_address == $serverIpAddress) {
 
+            $email = '';
             $registeredName = '';
             $relName = '';
 
@@ -48,6 +49,7 @@ class LegacyLicenseController extends ApiBaseController
             }
 
             if ($findLicense->user_id > 0) {
+                $email = user_email($findLicense->user_id);
                 $registeredName = user_name($findLicense->user_id);
             }
 
@@ -57,6 +59,8 @@ class LegacyLicenseController extends ApiBaseController
                     'status' => ucfirst($findLicense->status),
                     'local_key_hash' => md5($findLicense->license_key),
                     'registered_name' => $registeredName,
+                    'registeredname' => $registeredName,
+                    'email' => $email,
                     'rel_name' => $relName,
                     'reg_on' => $findLicense->created_at,
                     'due_on' => $findLicense->expiration_date,
