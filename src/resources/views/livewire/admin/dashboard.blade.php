@@ -169,6 +169,7 @@
                                 <th class="font-weight-bold">{{_e('Expiration Date')}}</th>
                                 <th class="font-weight-bold">{{_e('Lifetime')}}</th>
                                 <th class="font-weight-bold">{{_e('Status')}}</th>
+                                <th class="font-weight-bold">{{_e('Action')}}</th>
                             </tr>
                         </thead>
 
@@ -232,6 +233,18 @@
                                     @else
                                         <span class="badge badge-danger">Expired</span>
                                     @endif
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Action
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><button type="button" class="dropdown-item">View</button></li>
+                                            <li><button type="button" class="dropdown-item">Suspend</button></li>
+                                            <li><button type="button" class="dropdown-item">Delete</button></li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
