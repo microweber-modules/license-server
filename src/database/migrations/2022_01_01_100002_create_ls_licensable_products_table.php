@@ -7,13 +7,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateLsLicensableProductsTable extends Migration
 {
-    public function __construct()
-    {
-        $this->prefix = Config::get('license-server.default_table_prefix', 'ls');
-
-        $this->table = "{$this->prefix}_licensable_products";
-    }
-
     /**
      * Run the migrations.
      *
@@ -21,21 +14,15 @@ class CreateLsLicensableProductsTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable($this->table)) {
-            Schema::create($this->table, function (Blueprint $table) {
+        if (!Schema::hasTable("ls_licensable_products")) {
+            Schema::create("ls_licensable_products", function (Blueprint $table) {
                 $table->bigIncrements('id');
 
                 $table->morphs('licensable');
 
-                $table->foreignId('license_id')
-                    ->nullable()
-                    ->constrained("{$this->prefix}_licenses")
-                    ->onDelete('cascade');
+                $table->integer('license_id')->nullable();
 
-                $table->foreignId('user_id')
-                    ->nullable()
-                    ->constrained("users")
-                    ->onDelete('cascade');
+                $table->integer('user_id')->nullable();
 
                 $table->index(['licensable_id', 'licensable_type']);
 
@@ -56,8 +43,8 @@ class CreateLsLicensableProductsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable($this->table)) {
-            Schema::table($this->table, function (Blueprint $table) {
+        if (Schema::hasTable("ls_licensable_products")) {
+            Schema::table("ls_licensable_products", function (Blueprint $table) {
                 $table->dropIfExists();
             });
         }

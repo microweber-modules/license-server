@@ -7,12 +7,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateLsIpAddressesTable extends Migration
 {
-    public function __construct()
-    {
-        $this->prefix = Config::get('license-server.default_table_prefix', 'ls');
-
-        $this->table = "{$this->prefix}_ip_addresses";
-    }
 
     /**
      * Run the migrations.
@@ -21,14 +15,11 @@ class CreateLsIpAddressesTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable($this->table)) {
-            Schema::create($this->table, function (Blueprint $table) {
+        if (!Schema::hasTable('ls_ip_addresses')) {
+            Schema::create('ls_ip_addresses', function (Blueprint $table) {
                 $table->bigIncrements('id');
 
-                $table->foreignId('license_id')
-                    ->constrained("{$this->prefix}_licenses")
-                    ->onDelete('cascade');
-
+                $table->foreignId('license_id');
                 $table->ipAddress('ip_address');
 
                 $table->timestamps();
@@ -43,8 +34,8 @@ class CreateLsIpAddressesTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable($this->table)) {
-            Schema::table($this->table, function (Blueprint $table) {
+        if (Schema::hasTable('ls_ip_addresses')) {
+            Schema::table('ls_ip_addresses', function (Blueprint $table) {
                 $table->dropIfExists();
             });
         }

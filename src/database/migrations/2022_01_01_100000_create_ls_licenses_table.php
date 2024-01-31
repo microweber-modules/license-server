@@ -7,13 +7,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateLsLicensesTable extends Migration
 {
-    public function __construct()
-    {
-        $this->prefix = Config::get('license-server.default_table_prefix', 'ls');
-
-        $this->table = "{$this->prefix}_licenses";
-    }
-
     /**
      * Run the migrations.
      *
@@ -21,19 +14,12 @@ class CreateLsLicensesTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable($this->table)) {
-            Schema::create($this->table, function (Blueprint $table) {
+        if (!Schema::hasTable('licenses')) {
+            Schema::create('licenses', function (Blueprint $table) {
                 $table->bigIncrements('id');
 
-                $table->foreignId('user_id')
-                    ->nullable()
-                    ->constrained('users')
-                    ->onDelete('cascade');
-
-                $table->foreignId('created_by')
-                    ->nullable()
-                    ->constrained('users')
-                    ->onDelete('cascade');
+                $table->integer('user_id');
+                $table->integer('created_by')->nullable();
 
                 $table->string('domain', 200)->nullable()->unique();
                 $table->uuid('license_key')->unique();
@@ -55,8 +41,8 @@ class CreateLsLicensesTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable($this->table)) {
-            Schema::table($this->table, function (Blueprint $table) {
+        if (Schema::hasTable('licenses')) {
+            Schema::table('licenses', function (Blueprint $table) {
                 $table->dropIfExists();
             });
         }
