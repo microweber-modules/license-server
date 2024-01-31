@@ -13,13 +13,13 @@ class AdminController extends \MicroweberPackages\Admin\Http\Controllers\AdminCo
 //        $userId = user_id();
 //        $license = LicenseService::addLicense($product, 'artlab.bg', $userId);
 
-        // license key in uuid format
-        $licenseKey = "7b2df404-8775-44ba-850a-753927039a6f";
+//        // license key in uuid format
+//        $licenseKey = "7b2df404-8775-44ba-850a-753927039a6f";
+//
+//        // check license status
+//        $licenseStatus = LicenseService::checkLicenseStatus($licenseKey);
 
-        // check license status
-        $licenseStatus = LicenseService::checkLicenseStatus($licenseKey);
-
-        dd($licenseStatus);
+//        dd($licenseStatus);
 
         return view('microweber-module-license-server::admin.index');
     }

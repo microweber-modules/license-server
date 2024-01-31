@@ -96,6 +96,7 @@ final class LicenseServerServiceProvider extends ServiceProvider
         Livewire::component('admin-license-server-dashboard', LicenseServerDashboard::class);/**/
         Livewire::component('admin-license-server-licenses', LicenseServerDashboard::class);/**/
         Livewire::component('admin-license-server-licensed-products', LicenseServerDashboard::class);/**/
+        Livewire::component('admin-license-server-settings', LicenseServerDashboard::class);/**/
     }
 
     public function loadViews()

@@ -28,7 +28,7 @@
                 </nav>
 
                 <div class="py-3">
-                    @yield('content-admin-newsletter')
+                    @yield('content-admin-license-server')
                 </div>
 
             </div>
