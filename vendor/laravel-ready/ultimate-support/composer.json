@@ -1,0 +1,56 @@
+{
+    "name": "laravel-ready/ultimate-support",
+    "description": "A few useful reusable support package for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "ultimate-support",
+        "support"
+    ],
+    "authors": [
+        {
+            "name": "EgoistDeveloper",
+            "email": "epsilonelittr@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/laravel-ready/ultimate-support/issues",
+        "source": "https://github.com/laravel-ready/ultimate-support"
+    },
+    "require": {
+        "php": "^8.1 || ^8.0",
+        "illuminate/support": "^10.0 || ^9.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.5 || ^1.4",
+        "orchestra/testbench": "^7.5 || ^7.0.0",
+        "phpunit/phpunit": "^10.0 || ^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelReady\\UltimateSupport\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelReady\\UltimateSupport\\UltimateSupportServiceProvider"
+            ],
+            "aliases": {
+                "UltimateSupport": "LaravelReady\\UltimateSupport\\Facades\\UltimateSupport"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
