@@ -73,6 +73,7 @@ final class LicenseServerServiceProvider extends ServiceProvider
      */
     private function loadRoutes(): void
     {
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
         $this->loadRoutesFrom(__DIR__ . '/routes/admin.php');
         $this->loadRoutesFrom(__DIR__ . '/routes/api-public.php');
         $this->loadRoutesFrom(__DIR__ . '/routes/api-private.php');
