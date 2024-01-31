@@ -5,6 +5,8 @@ namespace MicroweberPackages\Modules\LicenseServer;
 use Illuminate\Routing\Router;
 
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use MicroweberPackages\Modules\LicenseServer\Http\Livewire\Admin\LicenseServerDashboard;
 use MicroweberPackages\Modules\LicenseServer\Support\DomainSupport;
 use MicroweberPackages\Modules\LicenseServer\Services\LicenseService;
 use MicroweberPackages\Modules\LicenseServer\Http\Middleware\DomainGuardMiddleware;
@@ -21,6 +23,10 @@ final class LicenseServerServiceProvider extends ServiceProvider
         $this->loadRoutes();
 
         $this->loadMiddlewares($router);
+
+        $this->loadViews();
+
+        $this->loadLivewireComponents();
 
         DomainSupport::checkTldCache();
     }
@@ -67,6 +73,7 @@ final class LicenseServerServiceProvider extends ServiceProvider
      */
     private function loadRoutes(): void
     {
+        $this->loadRoutesFrom(__DIR__ . '/routes/admin.php');
         $this->loadRoutesFrom(__DIR__ . '/routes/api-public.php');
         $this->loadRoutesFrom(__DIR__ . '/routes/api-private.php');
     }
@@ -81,5 +88,16 @@ final class LicenseServerServiceProvider extends ServiceProvider
         $router->aliasMiddleware('ls-domain-guard', DomainGuardMiddleware::class);
         $router->aliasMiddleware('ls-license-guard', LicenseGuardMiddleware::class);
         $router->aliasMiddleware('sanctum-abilities', CheckAbilities::class);
+    }
+
+
+    public function loadLivewireComponents()
+    {
+        Livewire::component('admin-license-server-dashboard', LicenseServerDashboard::class);/**/
+    }
+
+    public function loadViews()
+    {
+        $this->loadViewsFrom((dirname(__DIR__)) . '/src/resources/views', 'microweber-module-license-server');
     }
 }
