@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 use MicroweberPackages\Modules\LicenseServer\Traits\Licensable;
@@ -18,15 +19,6 @@ use App\Models\User;
 class License extends Model
 {
     use HasApiTokens, SoftDeletes, Licensable;
-
-    public function __construct(array $attributes = [])
-    {
-        $prefix = Config::get('theme-store.default_table_prefix', 'ls');
-
-        $this->table = "{$prefix}_licenses";
-
-        parent::__construct($attributes);
-    }
 
     public static function boot()
     {
@@ -103,4 +95,10 @@ class License extends Model
     {
         return $this->hasOne(IpAddress::class);
     }
+
+    public function getLicenseKeyMaskedAttribute()
+    {
+        return Str::mask($this->license_key, '*', -20, 13);
+    }
+
 }

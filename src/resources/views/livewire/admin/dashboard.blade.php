@@ -97,5 +97,71 @@
         </div>
     </div>
 
+    <div>
+        <div class="card">
+            <div class="card-body">
+
+                <h3>
+                    <?php _e('Licenses'); ?>
+                </h3>
+
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th class="font-weight-bold"><?php _e('Owner'); ?></th>
+                                <th class="font-weight-bold"><?php _e('Domain'); ?></th>
+                                <th class="font-weight-bold"><?php _e('License Key'); ?></th>
+                                <th class="font-weight-bold"><?php _e('Expiration Date'); ?></th>
+                                <th class="font-weight-bold"><?php _e('Lifetime'); ?></th>
+                                <th class="font-weight-bold"><?php _e('Status'); ?></th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="small">
+                        @foreach ($licenses as $license)
+                            <tr>
+                                <td>{{ user_name($license['user_id']) }}</td>
+                                <td>{{$license['domain']}}</td>
+                                <td>
+                                    <div x-data="{showLicense:false}">
+                                        <a x-show="!showLicense" href="#" x-on:click="showLicense =! showLicense">
+                                            {{$license->license_key_masked}}
+                                        </a>
+                                        <a x-show="showLicense" href="#" x-on:click="showLicense =! showLicense">
+                                            {{$license->license_key}}
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{$license['expiration_date']}}
+                                </td>
+                                <td>
+                                @if($license['is_lifetime'] == 1)
+                                    <span class="badge badge-success">Yes</span>
+                                @else
+                                    <span class="badge badge-danger">No</span>
+                                @endif
+                                </td>
+                                <td>
+                                    @if($license['is_active'] == 1)
+                                        <span class="badge badge-success">Active</span>
+                                    @else
+                                        <span class="badge badge-danger">Expired</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    {!! $licenses->links('microweber-ui::livewire.pagination') !!}
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </div>

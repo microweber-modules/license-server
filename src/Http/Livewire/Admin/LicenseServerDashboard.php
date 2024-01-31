@@ -9,7 +9,12 @@ class LicenseServerDashboard extends Component
 {
     public function render()
     {
+        $licensesQuery = License::query();
+
+        $licenses = $licensesQuery->paginate(10);
+
         return view('microweber-module-license-server::livewire.admin.dashboard', [
+            'licenses' => $licenses,
             'totalLicensesCount' => License::count(),
             'activeLicensesCount' => License::where('status', 'active')->count(),
             'expiredLicensesCount' => License::where('status', 'expired')->count(),
