@@ -7,6 +7,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use MicroweberPackages\Modules\LicenseServer\Http\Livewire\Admin\LicenseServerDashboard;
+use MicroweberPackages\Modules\LicenseServer\Http\Livewire\Admin\LicenseServerLicensedProducts;
 use MicroweberPackages\Modules\LicenseServer\Support\DomainSupport;
 use MicroweberPackages\Modules\LicenseServer\Services\LicenseService;
 use MicroweberPackages\Modules\LicenseServer\Http\Middleware\DomainGuardMiddleware;
@@ -94,10 +95,10 @@ final class LicenseServerServiceProvider extends ServiceProvider
 
     public function loadLivewireComponents()
     {
-        Livewire::component('admin-license-server-dashboard', LicenseServerDashboard::class);/**/
-        Livewire::component('admin-license-server-licenses', LicenseServerDashboard::class);/**/
-        Livewire::component('admin-license-server-licensed-products', LicenseServerDashboard::class);/**/
-        Livewire::component('admin-license-server-settings', LicenseServerDashboard::class);/**/
+        Livewire::component('admin-license-server-dashboard', LicenseServerDashboard::class);
+        Livewire::component('admin-license-server-licenses', LicenseServerDashboard::class);
+        Livewire::component('admin-license-server-licensed-products', LicenseServerLicensedProducts::class);
+        Livewire::component('admin-license-server-settings', LicenseServerDashboard::class);
     }
 
     public function loadViews()

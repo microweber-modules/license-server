@@ -27,8 +27,8 @@ class AuthController extends ApiBaseController
         $licenseKey = $request->input('license_key');
 
         $license = LicenseService::getLicenseByDomain($domain, $licenseKey);
-
         if ($license) {
+
             $license->tokens()->where('name', $domain)->delete();
 
             $ipAddress = IpAddress::where('license_id', $license->id)->first();
