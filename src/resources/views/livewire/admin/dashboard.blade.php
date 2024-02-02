@@ -2,7 +2,7 @@
 
     <style>
         .card-sm > .card-body {
-            padding: 4px;
+            padding: 2px;
         }
         .badge-success {
             color: #fff;
