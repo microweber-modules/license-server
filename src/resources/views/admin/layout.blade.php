@@ -27,7 +27,7 @@
 -->
 
                     <a class="btn btn-outline-dark justify-content-center gap-2 <?php if(route_is('admin.license-server.licensed-products')) : ?>active<?php endif;?>" href="<?php print route('admin.license-server.licensed-products'); ?>"><i class="mdi mdi-format-list-bulleted-square mr-1"></i> <?php _e('Licensed products'); ?></a>
-                    <a class="btn btn-outline-dark justify-content-center gap-2 <?php if(route_is('admin.license-server.settings')) : ?>active<?php endif;?>" href="<?php print route('admin.license-server.settings'); ?>"><i class="mdi mdi-cog-outline mr-1"></i> <?php _e('Settings'); ?></a>
+<!--                    <a class="btn btn-outline-dark justify-content-center gap-2 <?php if(route_is('admin.license-server.settings')) : ?>active<?php endif;?>" href="<?php print route('admin.license-server.settings'); ?>"><i class="mdi mdi-cog-outline mr-1"></i> <?php _e('Settings'); ?></a>-->
 
                 </nav>
 

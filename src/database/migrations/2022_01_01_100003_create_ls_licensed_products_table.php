@@ -20,6 +20,7 @@ class CreateLsLicensedProductsTable extends Migration
 
                 $table->integer('licensable_id');
                 $table->string('licensable_type');
+                $table->string('licensable_prefix');
 
                 $table->timestamps();
             });
