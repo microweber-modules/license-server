@@ -13,11 +13,11 @@ class LicensedProduct extends Model
     public function licensableTypeName()
     {
         $licensableType = $this->licensable_type;
-        if ($licensableType == 'product') {
-            return 'Product';
+        if ($licensableType == 'products') {
+            return 'Products';
         }
-        if ($licensableType == 'subscription_plan') {
-            return 'Subscription Plan';
+        if ($licensableType == 'subscription_plans') {
+            return 'Subscription Plans';
         }
 
         return 'Unknown';
@@ -35,7 +35,7 @@ class LicensedProduct extends Model
             }
         }
 
-        if ($licensableType == 'subscription_plan') {
+        if ($licensableType == 'subscription_plans') {
             $subscriptionPlan = SubscriptionPlan::find($licensableId);
             if ($subscriptionPlan) {
                 return $subscriptionPlan->name;

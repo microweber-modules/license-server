@@ -20,7 +20,7 @@
                         @if ($subscriptionPlans->count() > 0)
                         <optgroup label="Subscription Plans">
                         @foreach($subscriptionPlans as $subscriptionPlan)
-                            <option value="subscription_plan.{{ $subscriptionPlan->id }}">{{ $subscriptionPlan->name }}</option>
+                            <option value="subscription_plans.{{ $subscriptionPlan->id }}">{{ $subscriptionPlan->name }}</option>
                         @endforeach
                         </optgroup>
                         @endif

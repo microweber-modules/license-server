@@ -62,13 +62,18 @@ class LicenseService
         int $expirationDays = null,
         bool $isLifetime = false,
         bool $isTrial = false,
+        string $licenseKey = null
     ): null | License {
         if ($licensableModel->licensable() === null) {
             throw new LicenseException('Given model is not licensable.');
         }
 
+        if ($licenseKey === null) {
+            $licenseKey = Str::uuid();
+        }
+
         $data = [
-            'license_key' => Str::uuid(),
+            'license_key' => $licenseKey,
             'is_lifetime' => false,
             'is_trial' => false,
             'user_id' => $userId,

@@ -29,7 +29,7 @@ class LicenseServerLicensedProducts extends Component
                     $this->license_prefix = $this->generatePrefix($product->title);
                 }
             }
-            if ($licensableType == 'subscription_plan') {
+            if ($licensableType == 'subscription_plans') {
                 $product = SubscriptionPlan::find($licensableId);
                 if ($product) {
                     $this->license_prefix = $this->generatePrefix($product->name);

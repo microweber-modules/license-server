@@ -21,5 +21,6 @@ $config['settings']['autoload_namespace'] = [
     ],
 ];
 $config['settings']['service_provider'] = [
-    \MicroweberPackages\Modules\LicenseServer\LicenseServerServiceProvider::class
+    \MicroweberPackages\Modules\LicenseServer\LicenseServerServiceProvider::class,
+    \MicroweberPackages\Modules\LicenseServer\LicenseServerEventsServiceProvider::class
 ];
