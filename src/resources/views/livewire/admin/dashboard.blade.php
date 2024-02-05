@@ -185,14 +185,7 @@
                                 </td>-->
                                 <td>
                                     <div>
-                                        @php
-                                            $productName = '';
-                                            $licensed = $license->licensed()->first();
-                                            if ($licensed) {
-                                                $productName = content_title($licensed->licensable_id);
-                                            }
-                                            echo $productName;
-                                        @endphp
+                                        {{$license->licensedProductName}}
                                     </div>
                                 </td>
                                 <td>

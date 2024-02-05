@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
+use MicroweberPackages\Billing\Models\SubscriptionPlan;
 use MicroweberPackages\Modules\LicenseServer\Traits\Licensable;
 
 use App\Models\User;
@@ -99,6 +100,26 @@ class License extends Model
     public function getLicenseKeyMaskedAttribute()
     {
         return Str::mask($this->license_key, '*', -20, 13);
+    }
+
+    public function getLicensedProductNameAttribute()
+    {
+        $productName = '';
+        $licensed = $this->licensed()->first();
+        if ($licensed) {
+            if ((strpos($licensed->licensable_type, 'content') !== false) ||
+                strpos($licensed->licensable_type, 'ExtendedProduct') !== false) {
+                $productName = content_title($licensed->licensable_id);
+            }
+            if (strpos($licensed->licensable_type, 'ExtendedSubscriptionPlan') !== false) {
+                $findSubscriptionPlan = SubscriptionPlan::select('name')->where('id', $licensed->licensable_id)->first();
+                if ($findSubscriptionPlan) {
+                    $productName = $findSubscriptionPlan->name;
+                }
+            }
+        }
+
+        echo $productName;
     }
 
 }
