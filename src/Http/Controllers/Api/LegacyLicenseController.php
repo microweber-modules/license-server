@@ -52,10 +52,15 @@ class LegacyLicenseController extends ApiBaseController
                 $email = user_email($findLicense->user_id);
                 $registeredName = user_name($findLicense->user_id);
             }
+            $active = false;
+            if ($findLicense->status == 'active' || $findLicense->status == 'Active') {
+                $active = true;
+            }
 
             return response()->json([
                 $relType => [
                     'rel_type' => $relType,
+                    'active'=> $active,
                     'status' => ucfirst($findLicense->status),
                     'local_key_hash' => md5($findLicense->license_key),
                     'registered_name' => $registeredName,
