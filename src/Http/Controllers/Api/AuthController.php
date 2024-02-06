@@ -59,7 +59,7 @@ class AuthController extends ApiBaseController
 
         return response([
             'status' => false,
-            'message' => 'Invalid license key or lincese source.',
+            'message' => 'Invalid license key or license source.',
         ], 401);
     }
 }
