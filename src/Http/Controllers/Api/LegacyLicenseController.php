@@ -24,6 +24,13 @@ class LegacyLicenseController extends ApiBaseController
 
         $findLicense = License::where('license_key', $localKey)->first();
         if (!$findLicense) {
+
+            // Dobule check form WHMCS
+            $checkWhmcs = $this->checkWhmcs($localKey, $relType);
+            if ($checkWhmcs) {
+                return $checkWhmcs;
+            }
+
             return $this->respondWithError('Invalid license key');
         }
 
@@ -77,6 +84,35 @@ class LegacyLicenseController extends ApiBaseController
         }
 
         return $this->respondWithError('The IP address '.$serverIpAddress.' is not allowed. Please contact the license provider.');
+
+    }
+
+    public function checkWhmcs($localKey, $relType) {
+
+        $whmcsUrl = 'https://update.microweberapi.com/?api_function=validate_licenses&local_key='.$localKey.'&rel_type='.$relType;
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $whmcsUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        $output = curl_exec($ch);
+
+        curl_close($ch);
+
+        if ($output) {
+            $output = json_decode($output, true);
+            if (isset($output[$relType])) {
+                if (isset($output[$relType]['status']) && (
+                        $output[$relType]['status'] == 'Active' ||
+                        $output[$relType]['status'] == 'active'
+                    )) {
+                    $output[$relType]['active'] = true;
+                }
+                return response()->json($output);
+            }
+        }
+
+        return false;
 
     }
 
