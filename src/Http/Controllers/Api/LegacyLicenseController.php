@@ -37,7 +37,7 @@ class LegacyLicenseController extends ApiBaseController
             ]);
         }
 
-     //   if ($ipAddress && $ipAddress->ip_address == $serverIpAddress) {
+        if ($ipAddress && $ipAddress->ip_address == $serverIpAddress) {
 
             $email = '';
             $registeredName = '';
@@ -69,9 +69,9 @@ class LegacyLicenseController extends ApiBaseController
                     'serviceid' => 0,
                 ]
             ]);
-      //  }
+        }
 
-    //    return $this->respondWithError('The IP address '.$serverIpAddress.' is not allowed. Please contact the license provider.');
+        return $this->respondWithError('The IP address '.$serverIpAddress.' is not allowed. Please contact the license provider.');
 
     }
 
