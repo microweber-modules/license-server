@@ -26,12 +26,27 @@ class OrderWasPaidListener
                         .'-'. Str::random(6).'-'.Str::random(6).'-'.Str::random(6);
                 }
 
+                $isLifetime = false;
+                if ($subscriptionPlan->billing_interval == 'lifetime') {
+                    $isLifetime = true;
+                }
+                $expirationDays = null;
+                if ($subscriptionPlan->billing_interval == 'annually') {
+                    $expirationDays = 365;
+                }
+                if ($subscriptionPlan->billing_interval == 'monthly') {
+                    $expirationDays = 30;
+                }
+                if ($subscriptionPlan->billing_interval == 'weekly') {
+                    $expirationDays = 7;
+                }
+
                 LicenseService::addLicense(
                     $subscriptionPlan,
                     null,
                     $userId,
-                    null,
-                    false,
+                    $expirationDays,
+                    $isLifetime,
                     false,
                     $licenseKey
                 );
