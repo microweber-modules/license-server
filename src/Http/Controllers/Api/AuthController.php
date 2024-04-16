@@ -41,20 +41,28 @@ class AuthController extends ApiBaseController
                 ]);
             }
 
-            if ($ipAddress && $ipAddress->ip_address == $serverIpAddress) {
-                $licenseAccessToken = $license->createToken($domain, ['license-access']);
+            $licenseAccessToken = $license->createToken($domain, ['license-access']);
 
-                return [
-                    'status' => true,
-                    'message' => 'Successfully logged in.',
-                    'access_token' => explode('|', $licenseAccessToken->plainTextToken)[1],
-                ];
-            }
+            return [
+                'status' => true,
+                'message' => 'Successfully logged in.',
+                'access_token' => explode('|', $licenseAccessToken->plainTextToken)[1],
+            ];
 
-            return response([
-                'status' => false,
-                'message' => 'This IP address is not allowed. Please contact the license provider.',
-            ], 401);
+//            if ($ipAddress && $ipAddress->ip_address == $serverIpAddress) {
+//                $licenseAccessToken = $license->createToken($domain, ['license-access']);
+//
+//                return [
+//                    'status' => true,
+//                    'message' => 'Successfully logged in.',
+//                    'access_token' => explode('|', $licenseAccessToken->plainTextToken)[1],
+//                ];
+//            }
+//
+//            return response([
+//                'status' => false,
+//                'message' => 'This IP address is not allowed. Please contact the license provider.',
+//            ], 401);
         }
 
         return response([

@@ -34,17 +34,17 @@ class LegacyLicenseController extends ApiBaseController
             return $this->respondWithError('Invalid license key');
         }
 
-        $ipAddress = IpAddress::where('license_id', $findLicense->id)->first();
-        $serverIpAddress = user_ip();
+//        $ipAddress = IpAddress::where('license_id', $findLicense->id)->first();
+//        $serverIpAddress = user_ip();
 
-        if (!$ipAddress) {
-            $ipAddress = IpAddress::create([
-                'license_id' => $findLicense->id,
-                'ip_address' => $serverIpAddress,
-            ]);
-        }
+//        if (!$ipAddress) {
+//            $ipAddress = IpAddress::create([
+//                'license_id' => $findLicense->id,
+//                'ip_address' => $serverIpAddress,
+//            ]);
+//        }
 
-        if ($ipAddress && $ipAddress->ip_address == $serverIpAddress) {
+//        if ($ipAddress && $ipAddress->ip_address == $serverIpAddress) {
 
             $email = '';
             $registeredName = '';
@@ -81,9 +81,9 @@ class LegacyLicenseController extends ApiBaseController
                     'serviceid' => 0,
                 ]
             ]);
-        }
+//        }
 
-        return $this->respondWithError('The IP address '.$serverIpAddress.' is not allowed. Please contact the license provider.');
+//        return $this->respondWithError('The IP address '.$serverIpAddress.' is not allowed. Please contact the license provider.');
 
     }
 
