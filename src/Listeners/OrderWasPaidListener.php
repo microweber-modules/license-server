@@ -2,6 +2,7 @@
 
 namespace MicroweberPackages\Modules\LicenseServer\Listeners;
 
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use MicroweberPackages\Modules\LicenseServer\Models\ExtendedSubscriptionPlan;
 use MicroweberPackages\Modules\LicenseServer\Models\LicensedProduct;
@@ -58,6 +59,8 @@ class OrderWasPaidListener
 
                 $notification = new UserLicenseActivatedNotification([
                     'licenseKey' => $licenseKey,
+                    'isLifetime' => $isLifetime,
+                    'expirationDays' => $expirationDays,
                 ]);
 
                 Notification::sendNow($user, $notification);

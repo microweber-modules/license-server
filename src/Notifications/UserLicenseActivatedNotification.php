@@ -55,9 +55,17 @@ class UserLicenseActivatedNotification extends Notification
         $mail->greeting('Hey, '. $notifiable->first_name);
         $mail->line('Your license is activated and ready to use.');
         $mail->line('License key: ' . $this->notificationData['licenseKey']);
+
+        if ($this->notificationData['isLifetime']) {
+            $mail->line('Your license is lifetime.');
+        } else {
+            $mail->line('Your license will expire in ' . $this->notificationData['expirationDays'] . ' days.');
+        }
+
         $mail->line('You can view all your licenses in your account.');
 
-        $mail->action('View Licenses', site_url().'projects/licenses');
+        $mail->action('How to install white label?', 'https://microweber.com/white-label-license-instructions');
+       // $mail->action('View Licenses', site_url().'projects/licenses');
 
         return $mail;
     }
