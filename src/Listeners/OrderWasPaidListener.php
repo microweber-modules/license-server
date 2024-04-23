@@ -5,7 +5,10 @@ namespace MicroweberPackages\Modules\LicenseServer\Listeners;
 use Illuminate\Support\Str;
 use MicroweberPackages\Modules\LicenseServer\Models\ExtendedSubscriptionPlan;
 use MicroweberPackages\Modules\LicenseServer\Models\LicensedProduct;
+use MicroweberPackages\Modules\LicenseServer\Notifications\UserLicenseActivatedNotification;
 use MicroweberPackages\Modules\LicenseServer\Services\LicenseService;
+use MicroweberPackages\Notification\Models\NotificationMailLog;
+use MicroweberPackages\User\Models\User;
 
 class OrderWasPaidListener
 {
@@ -50,6 +53,21 @@ class OrderWasPaidListener
                     false,
                     $licenseKey
                 );
+
+                $user = User::where('id', $userId)->first();
+
+                $notification = new UserLicenseActivatedNotification([
+                    'licenseKey' => $licenseKey,
+                ]);
+
+                Notification::sendNow($user, $notification);
+
+                $mailLog = new NotificationMailLog();
+                $mailLog->type = 'UserLicenseActivatedNotification';
+                $mailLog->notifiable_type = 'user';
+                $mailLog->notifiable_id = $userId;
+                $mailLog->html = $notification->toMail($user)->render();
+                $mailLog->save();
 
             }
         }
