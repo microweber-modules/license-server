@@ -64,9 +64,12 @@ class UserLicenseActivatedNotification extends Notification
 
         $mail->line('You can view all your licenses in your account.');
 
-        $mail->action('How to install white label?', 'https://microweber.com/white-label-license-instructions');
+        $mail->action('How to install license key?', 'https://microweber.com/white-label-license-instructions');
        // $mail->action('View Licenses', site_url().'projects/licenses');
 
+        $mail->line('License is only for own use and cannot be resold or shared to any third party.');
+        $mail->line('If you share your license key, with someone else, we cannot support your license key anymore.');
+        
         return $mail;
     }
 
