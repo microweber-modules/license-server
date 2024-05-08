@@ -111,8 +111,9 @@ class LegacyLicenseController extends ApiBaseController
                         $output[$relType]['status'] == 'active'
                     )) {
                     $output[$relType]['active'] = true;
+                    return response()->json($output);
                 }
-                return response()->json($output);
+
             }
         }
 
