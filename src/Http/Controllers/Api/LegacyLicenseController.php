@@ -21,15 +21,14 @@ class LegacyLicenseController extends ApiBaseController
         if (!$relType) {
             return $this->respondWithError('Invalid rel type');
         }
+        // Dobule check form WHMCS
+        $checkWhmcs = $this->checkWhmcs($localKey, $relType);
+        if ($checkWhmcs) {
+            return $checkWhmcs;
+        }
 
         $findLicense = License::where('license_key', $localKey)->first();
         if (!$findLicense) {
-
-            // Dobule check form WHMCS
-            $checkWhmcs = $this->checkWhmcs($localKey, $relType);
-            if ($checkWhmcs) {
-                return $checkWhmcs;
-            }
 
             return $this->respondWithError('Invalid license key');
         }
