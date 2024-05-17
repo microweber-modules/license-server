@@ -6,7 +6,7 @@
             <form class="d-flex gap-2 align-items-center" wire:submit.prevent="addLicensedProduct">
                 <div class="form-group">
                     <label for="licensed_product_id">{{_e('Licensable ID')}}</label>
-                    <select class="form-control" wire:model="licensable">
+                    <select class="form-control" wire:model.live="licensable">
                         <option value="">{{_e('Select')}}</option>
 
                         @if ($products->count() > 0)
@@ -30,7 +30,7 @@
                 </div>
                 <div  style="width:400px"  class="form-group">
                     <label for="licensed_product_id">{{_e('License Prefix')}}</label>
-                    <input type="text" class="form-control" wire:model="license_prefix">
+                    <input type="text" class="form-control" wire:model.live="license_prefix">
                     @error('license_prefix') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                <div>

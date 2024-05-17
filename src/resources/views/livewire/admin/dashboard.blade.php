@@ -121,11 +121,11 @@
                     <div class="d-flex align-items-center gap-3">
                         <div>
                             <label>{{_e('Keyword')}}</label>
-                            <input  wire:model="keyword" type="text" class="form-control" placeholder="{{_e('Search')}}">
+                            <input  wire:model.live="keyword" type="text" class="form-control" placeholder="{{_e('Search')}}">
                         </div>
                         <div>
                             <label>{{_e('Status')}}</label>
-                            <select wire:model="status" class="form-select">
+                            <select wire:model.live="status" class="form-select">
                                 <option value="">{{_e('All')}}</option>
                                 <option value="active">{{_e('Active')}}</option>
                                 <option value="expired">{{_e('Expired')}}</option>
@@ -136,7 +136,7 @@
                         <div class="d-flex gap-2">
                             <div>
                                 <label>{{_e('Order By')}}</label>
-                                <select wire:model="orderBy" class="form-select">
+                                <select wire:model.live="orderBy" class="form-select">
                                     <option value="id">{{_e('Default')}}</option>
                                     <option value="expiration_date">{{_e('Expiration Date')}}</option>
                                     <option value="created_at">{{_e('Created At')}}</option>
@@ -144,7 +144,7 @@
                             </div>
                             <div>
                                 <label>{{_e('Direction')}}</label>
-                                <select wire:model="orderDir" class="form-select">
+                                <select wire:model.live="orderDir" class="form-select">
                                     <option value="asc">{{_e('Ascending')}}</option>
                                     <option value="desc">{{_e('Descending')}}</option>
                                 </select>
