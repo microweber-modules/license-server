@@ -81,7 +81,7 @@ class LicenseServerLicensedProducts extends Component
         $licensedProduct->licensable_prefix = $this->license_prefix;
         $licensedProduct->save();
 
-        $this->emit('$refresh');
+        $this->dispatch('$refresh');
 
     }
 
