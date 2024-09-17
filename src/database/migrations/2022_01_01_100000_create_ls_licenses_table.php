@@ -22,7 +22,7 @@ class CreateLsLicensesTable extends Migration
                 $table->integer('created_by')->nullable();
 
                 $table->string('domain', 200)->nullable()->unique();
-                $table->uuid('license_key')->unique();
+                $table->text('license_key')->nullable();
                 $table->enum('status', ['active', 'inactive', 'suspended'])->default('active');
                 $table->dateTime('expiration_date')->nullable();
                 $table->boolean('is_trial')->default(false);
