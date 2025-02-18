@@ -1,7 +1,7 @@
 <?php
 
 
-Route::name('license-server.')
+Route::name('license_server.')
 ->prefix('license-server')
 ->namespace('MicroweberPackages\Modules\LicenseServer\Http\Controllers\Api')
 ->group(function () {

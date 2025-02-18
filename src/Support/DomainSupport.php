@@ -2,7 +2,7 @@
 
 namespace MicroweberPackages\Modules\LicenseServer\Support;
 
-include_once modules_path() . 'license-server/vendor/autoload.php';
+include_once modules_path() . 'license_server/vendor/autoload.php';
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
@@ -13,7 +13,7 @@ use Pdp\TopLevelDomains;
 
 class DomainSupport
 {
-    private static $publicSuffixList = 'license-server/iana-tld-list.txt';
+    private static $publicSuffixList = 'license_server/iana-tld-list.txt';
 
     /**
      * Validate the given domain as tld, subdomain and registrable domain.

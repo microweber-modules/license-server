@@ -16,7 +16,7 @@ return array(
     'Psr\\Clock\\' => array($vendorDir . '/psr/clock/src'),
     'Pdp\\' => array($vendorDir . '/jeremykendall/php-domain-parser/src'),
     'LaravelReady\\UltimateSupport\\' => array($vendorDir . '/laravel-ready/ultimate-support/src'),
-    'Illuminate\\Support\\' => array($vendorDir . '/illuminate/macroable', $vendorDir . '/illuminate/conditionable', $vendorDir . '/illuminate/collections', $vendorDir . '/illuminate/support'),
+    'Illuminate\\Support\\' => array($vendorDir . '/illuminate/collections', $vendorDir . '/illuminate/conditionable', $vendorDir . '/illuminate/macroable', $vendorDir . '/illuminate/support'),
     'Illuminate\\Contracts\\' => array($vendorDir . '/illuminate/contracts'),
     'Doctrine\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib/Doctrine/Inflector'),
     'Carbon\\Doctrine\\' => array($vendorDir . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine'),
