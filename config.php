@@ -1,6 +1,6 @@
 <?php
 $config = array();
-$config['name'] = "Lincese Server";
+$config['name'] = "License Server";
 $config['author'] = "Microweber";
 
 $config['categories'] = "admin";

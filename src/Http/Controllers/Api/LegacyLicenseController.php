@@ -29,7 +29,6 @@ class LegacyLicenseController extends ApiBaseController
 
         $findLicense = License::where('license_key', $localKey)->first();
         if (!$findLicense) {
-
             return $this->respondWithError('Invalid license key');
         }
 
