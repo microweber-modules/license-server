@@ -1,7 +1,7 @@
 {
-  "name": "microweber-modules/license-server",
+  "name": "microweber-modules/license_server",
   "type": "microweber-modules",
-  "description": "license-server",
+  "description": "license_server",
   "keywords": [
     "microweber",
     "ecommerce",
