@@ -66,7 +66,7 @@ final class LicenseServerServiceProvider extends ServiceProvider
      */
     private function registerConfigs(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/config/license-server.php', 'license-server');
+        $this->mergeConfigFrom(__DIR__ . '/config/license-server.php', 'license_server');
     }
 
     /**

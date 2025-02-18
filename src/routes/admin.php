@@ -1,6 +1,6 @@
 <?php
 
-Route::name('admin.license-server.')
+Route::name('admin.license_server.')
     ->prefix(ADMIN_PREFIX . '/license-server')
     ->middleware(['admin'])
     ->namespace('MicroweberPackages\Modules\LicenseServer\Http\Controllers\Admin')
